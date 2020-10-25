@@ -1,0 +1,16 @@
+{:picpage.env/env {}
+
+ :picpage.Boundary.utils.sql/sql
+ {:env #ig/ref :picpage.env/env}
+
+ :picpage.Boundary.utils.migrate/migrate
+ {:env #ig/ref :picpage.env/env}
+
+ :picpage.handler.core/handler
+ {:env #ig/ref :picpage.env/env
+  :db #ig/ref :picpage.Boundary.utils.sql/sql}
+
+ :picpage.handler.core/server
+ {:env #ig/ref :picpage.env/env
+  :handler #ig/ref :picpage.handler.core/handler
+  :port 3000}}
