@@ -1,11 +1,11 @@
 version: "3"
 services:
   dev_db:
-    image: postgres
+    build: containers/postgres
     ports:
       - 5565:5432
     volumes:
-      - "dev_db:/var/lib/postgresql/data"
+      - "dev_db_volume:/var/lib/postgresql/data"
     environment:
       POSTGRES_USER: meguru
       POSTGERS_PASSWORD: emacs
@@ -24,5 +24,5 @@ services:
     depends_on:
       - dev_db
 volumes:
-  dev_db:
+  dev_db_volume:
   lib_data:

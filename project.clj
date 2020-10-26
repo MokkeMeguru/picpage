@@ -7,6 +7,9 @@
                                   ;; for handler
                  [ring/ring-jetty-adapter "1.8.2"]
                  [metosin/reitit "0.5.10"]
+                 [metosin/reitit-swagger "0.5.10"]
+                 [metosin/reitit-swagger-ui "0.5.10"]
+
                  [ring-cors "0.1.13"]
                  [ring-logger "1.0.1"]
                  [com.fasterxml.jackson.core/jackson-core "2.11.3"] ;; required!!!

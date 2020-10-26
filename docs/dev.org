@@ -45,3 +45,11 @@ Retrieving com/fasterxml/jackson/core/jackson-core/2.6.6/jackson-core-2.6.6.jar 
 * ちょっと良くないところ
 ** alias を貼り直すことは出来ない
 (require [hogehoge :as hoge]) としたあとに (require [hogebar :as hoge]) とは出来ない。こうなったら、 repl を立ち上げ直す必要がある。
+* docker-compose の db connection port について
+docker-compose 内部でネットワークを作っているので、 export しているポートではなく,  本来繋ぐポートを指定する。
+例えば 5565:5432 で postgresql の port を開けていても、内部同士の通信は 5432 で行う
+
+local -> docker's psql
+#+begin_src shell
+psql -h 127.0.0.1 -p 5565 -U meguru picpage_db
+#+end_src

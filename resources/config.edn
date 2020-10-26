@@ -1,16 +1,25 @@
-{:picpage.env/env {}
+{:picpage.infrastructure.env/env {}
 
- :picpage.Boundary.utils.sql/sql
- {:env #ig/ref :picpage.env/env}
+ :picpage.infrastructure.sql.migrate/migrate
+ {:env #ig/ref :picpage.infrastructure.env/env}
 
- :picpage.Boundary.utils.migrate/migrate
- {:env #ig/ref :picpage.env/env}
+ :picpage.infrastructure.sql.sql/sql
+ {:env #ig/ref :picpage.infrastructure.env/env}
 
- :picpage.handler.core/handler
- {:env #ig/ref :picpage.env/env
-  :db #ig/ref :picpage.Boundary.utils.sql/sql}
+ :picpage.infrastructure.router.core/router
+ {:env #ig/ref :picpage.infrastructure.env/env
+  :db #ig/ref :picpage.infrastructure.sql.sql/sql}
 
- :picpage.handler.core/server
- {:env #ig/ref :picpage.env/env
-  :handler #ig/ref :picpage.handler.core/handler
-  :port 3000}}
+ :picpage.server/server
+ {:env #ig/ref :picpage.infrastructure.env/env
+  :router #ig/ref :picpage.infrastructure.router.core/router
+  :port 3000}
+ ;; :picpage.handler.core/handler
+ ;; {:env #ig/ref :picpage.env/env
+ ;;  :db #ig/ref :picpage.infrastructure.sql.core/sql}
+
+ ;; :picpage.handler.core/server
+ ;; {:env #ig/ref :picpage.env/env
+ ;;  :handler #ig/ref :picpage.handler.core/handler
+ ;;  :port 3000}
+ }

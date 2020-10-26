@@ -8,7 +8,32 @@
             ;; [pipage.Boundary.migrate :refer [reset-migrate]]
             ))
 
+(def config-file
+  "config.edn")
+
+(defn load-config [config]
+  (-> config
+      io/resource
+      slurp
+      ig/read-string
+      (doto
+       ig/load-namespaces)))
+
+(defn start []
+  (igr/set-prep! (constantly (load-config config-file)))
+  (igr/prep)
+  (igr/init))
+
+(defn stop []
+  (igr/halt))
+
+(defn restart []
+  (igr/reset-all))
+
 (defn -main
-  "I don't do a whole lot ... yet."
   [& args]
-  (println "Hello, World!"))
+  (timbre/set-level! :info)
+  (println "Hello, World!")
+  (-> config-file
+      load-config
+      ig/init))

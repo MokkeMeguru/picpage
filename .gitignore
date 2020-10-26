@@ -11,3 +11,7 @@ pom.xml.asc
 /.prepl-port
 .hgignore
 .hg/
+/image-db/*.png
+/image-db/pictures/*-*
+/image-db/thumb/*-*
+/image-db/icons/*-*
