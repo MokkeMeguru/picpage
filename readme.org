@@ -1,0 +1,16 @@
+#+TITLE: Readme
+* running for development
+#+begin_src shell
+cd picpage
+docker-compose run --service-port repl
+lein repl
+(start)
+#+end_src
+
+with picpage server (https://github.com/MokkeMeguru/picpage-client)
+
+#+begin_src shell
+cd picpage-client
+lein run
+#+end_src
+
