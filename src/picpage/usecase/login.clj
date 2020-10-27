@@ -14,5 +14,6 @@
         (try (do
                (user-tokens-repository/add-token db (:id user) token)
                {:status 201
-                :body {:token token}})
+                :body {:token token
+                       :userid (:user_id user)}})
              (catch Exception e (errors/unknown-error (.getMessage e))))))))

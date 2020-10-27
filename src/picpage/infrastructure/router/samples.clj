@@ -5,6 +5,13 @@
 
 (defn sample-router [env]
   ["/samples"
+   ["/ping"
+    {:swagger {:tags ["samples"]}
+     :post {:summary "ping"
+            :responses {200 {:body {:result string?}}}
+            :handler (fn [& args]
+                       {:status 200
+                        :body {:result "pong"}})}}]
    ["/files"
     {:swagger {:tags ["samples"]}}
 

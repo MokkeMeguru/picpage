@@ -11,10 +11,9 @@
   [handler]
   (fn [request]
     (timbre/warn "Access Origin: " (-> request :headers (get "origin")))
-    ;;    (print request)
     (let [response (handler request)]
       (-> response
           (assoc-in [:headers "Access-Control-Allow-Credentials"] "true")
-          (assoc-in [:headers "Access-Control-Allow-Origin"] "http://localhost:3000")
+          (assoc-in [:headers "Access-Control-Allow-Origin"] "*")
           (assoc-in [:headers "Access-Control-Allow-Headers"] "authorization,content-type")
           (assoc-in [:headers "Access-Control-Allow-Methods"] "POST,GET,OPTIONS,DELETE,PUT,UPDATE,PATCH")))))

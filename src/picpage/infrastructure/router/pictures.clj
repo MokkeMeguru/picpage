@@ -1,5 +1,5 @@
 (ns picpage.infrastructure.router.pictures
-  (:require [picpage.infrastructure.handler.pictures :refer [upload delete lists]]))
+  (:require [picpage.infrastructure.handler.pictures :refer [upload delete lists picture-detail picture-information picture-thumb]]))
 
 (defn upload-router [env]
   ["/upload"
@@ -13,4 +13,11 @@
     {:post upload
      :get lists}]
    ["/:picture-id"
-    {:delete delete}]])
+    {:delete delete}]
+   ["/:picture-id"
+    ["/thumb"
+     {:get picture-thumb}]
+    ["/info"
+     {:get picture-information}]
+    ["/detail"
+     {:get picture-detail}]]])

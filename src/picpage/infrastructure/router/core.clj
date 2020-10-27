@@ -26,7 +26,7 @@
 
    [reitit.dev.pretty :as pretty]
 
-   [picpage.infrastructure.router.utils :refer [wrap-db]]
+   [picpage.infrastructure.router.utils :refer [wrap-db my-wrap-cors]]
    [picpage.infrastructure.router.samples :refer [sample-router]]
    [picpage.infrastructure.router.registrations :refer [signup-router login-router logout-router]]
    [picpage.infrastructure.router.pictures :refer [pictures-router]]))
@@ -75,7 +75,9 @@
                          [wrap-db db]]}})
    (ring/routes
     (swagger-ui/create-swagger-ui-handler {:path "/api"})
-    (ring/create-default-handler))))
+    (ring/create-default-handler))
+   {:middleware [my-wrap-cors
+                 wrap-with-logger]}))
 
 (defmethod ig/init-key ::router [_ {:keys [env db]}]
   (timbre/info "router got: env" env)
